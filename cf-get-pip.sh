@@ -18,9 +18,9 @@ test -e "$cfconfig" || { echo "Config file is missing"; exit 1; }
 
 # Context
 ctx=$( cat ~/.cfconfig | yq e '."current-context"' -)
+echo "ctx: $ctx"
 # Token
 token=$( cat ~/.cfconfig | yq e - -o=json | jq -r ".contexts.$ctx.token" )
-echo "ctx: $ctx"
 echo "token: $token"
 exit
 
