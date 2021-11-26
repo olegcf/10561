@@ -18,12 +18,8 @@ test -e "$cfconfig" || { echo "Config file is missing"; exit 1; }
 
 # Context
 ctx=$( cat ~/.cfconfig | yq e '."current-context"' -)
-echo "ctx: $ctx"
 # Token
 token=$( cat ~/.cfconfig | yq e ".contexts.$ctx.token" -  | tr -d \" ) # -o=json ) #| jq -r ".contexts.$ctx.token" )
-token=$( cat ~/.cfconfig | yq e - -o=json | jq -r ".contexts.$ctx.token" )
-echo "token: $token"
-exit
 
 # Create dump file for json manipulation. Will hold initial output of `cf get pip`
 dump_file=`mktemp`
