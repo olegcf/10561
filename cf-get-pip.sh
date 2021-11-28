@@ -64,10 +64,6 @@ do
     # Write steps under .spec.specTemplate.steps
     yq -P -i e '( .[] | select(.metadata.id == "'$id'").spec.specTemplate.steps |= '"$steps"') | [.]' $dump_file
   fi
-  #else
-  # if .spec.specTemplate property was not present in the pipeline, then just append file as it
-    #cat $file | yq -P e - >> $dump_file
-  #fi
 done
 
 # When multiline pipelines, put them under items array; conforming to the `cf get pip -o yaml` output
